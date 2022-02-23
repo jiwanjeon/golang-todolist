@@ -1,20 +1,33 @@
 package main
 
 import (
+	"flag"
+	"fmt"
 	"log"
 	"net/http"
 
 	"github.com/gorilla/mux"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
+	"github.com/jiwanjeon/go-todolist/pkg/models"
 	"github.com/jiwanjeon/go-todolist/pkg/routes"
 	_ "github.com/lib/pq"
 )
 
 func main() {
-	router := mux.NewRouter()
-	routes.RegisterTodoListRoutes(router)
-	http.Handle("/", router)
-	log.Fatal(http.ListenAndServe(":9010", router))
+	
+	migrate := flag.Bool("fork", true, "bool")
+	
+	if *migrate == true {
+		fmt.Println("Migration Working...")
+		models.Migrate()
+		router := mux.NewRouter()
+		routes.RegisterTodoListRoutes(router)
+		http.Handle("/", router)
+		log.Fatal(http.ListenAndServe(":9010", router))
+	} else {
+		fmt.Println("You should parsing argument with migrate")
+	}
+	
 }
 
 // TODO : Complete 와 InComplete가 하는 동작이 똑같은데 하나로 합칠 수 있을듯?
