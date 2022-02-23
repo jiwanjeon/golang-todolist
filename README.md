@@ -19,10 +19,10 @@
 
 # Project Struct
 
-cmd --> main --> main.go
-pkg
--->config --> app.go
--->controllers --> todo-controller.go
--->models --> todo.go
--->routes --> todolist-routes.go
--->utils --> utils.go
+cmd --> main --> main.go <br>
+pkg <br>
+-->config --> app.go<br>
+-->controllers --> todo-controller.go<br>
+-->models --> todo.go<br>
+-->routes --> todolist-routes.go<br>
+-->utils --> utils.go<br>
