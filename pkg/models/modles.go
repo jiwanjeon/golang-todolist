@@ -24,7 +24,7 @@ type Todo struct {
 }
 
 var (
-	person = &Person{Name: "Jiwan", Email: "jeonjiwan94@gmail.com"}
+	// person = &Person{Name: "Jiwan", Email: "jeonjiwan94@gmail.com"}
 	todos = []Todo{
 		{ Title: "Golang Study", Description: "Richard Templar", Condition: false},
 		{ Title: "Todo2", Description: "Description 2", Condition: false},
