@@ -11,10 +11,10 @@ import (
 )
 
 func main() {
-	r := mux.NewRouter()
-	routes.RegisterTodoListRoutes(r)
-	http.Handle("/", r)
-	log.Fatal(http.ListenAndServe(":9010", r))
+	router := mux.NewRouter()
+	routes.RegisterTodoListRoutes(router)
+	http.Handle("/", router)
+	log.Fatal(http.ListenAndServe(":9010", router))
 }
 
 // TODO : Complete 와 InComplete가 하는 동작이 똑같은데 하나로 합칠 수 있을듯?

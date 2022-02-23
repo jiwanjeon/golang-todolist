@@ -24,7 +24,7 @@ type Todo struct {
 }
 
 var (
-	// person = &Person{Name: "Jiwan", Email: "jeonjiwan94@gmail.com"}
+	person = &Person{Name: "Jiwan", Email: "jeonjiwan94@gmail.com"}
 	todos = []Todo{
 		{ Title: "Golang Study", Description: "Richard Templar", Condition: false},
 		{ Title: "Todo2", Description: "Description 2", Condition: false},
@@ -69,16 +69,4 @@ func DeleteTodo(ID int64) Todo{
 	var todo Todo
 	db.Where("ID=?", ID).Delete(todo)
 	return todo
-}
-
-func CompleteTodo(Condition bool) (*Todo, *gorm.DB) {
-	var todo Todo
-	db := db.Where("Condition = ?", Condition).Find(&todo)
-	return &todo, db
-}
-
-func InCompleteTodo(Condition bool) (*Todo, *gorm.DB) {
-	var todo Todo
-	db := db.Where("Condition = ?", Condition).Find(&todo)
-	return &todo, db
 }
