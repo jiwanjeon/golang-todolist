@@ -42,8 +42,8 @@ func GetTodoById(w http.ResponseWriter, r *http.Request) {
 func CreateTodo(w http.ResponseWriter, r *http.Request) {
 	CreateTodo := &models.Todo{}
 	utils.ParseBody(r, CreateTodo)
-	b := CreateTodo.CreateTodo()
-	res, _ := json.Marshal(b)
+	CreateTodoList := CreateTodo.CreateTodo()
+	res, _ := json.Marshal(CreateTodoList)
 	w.WriteHeader(http.StatusOK)
 	w.Write(res)
 }
@@ -63,8 +63,8 @@ func DeleteTodo(w http.ResponseWriter, r *http.Request) {
 }
 
 func UpdateTodo(w http.ResponseWriter, r *http.Request) {
-	var updateTodo = &models.Todo{}
-	utils.ParseBody(r, updateTodo)
+	var parsedRequest = &models.Todo{}
+	utils.ParseBody(r, parsedRequest)
 	vars := mux.Vars(r)
 	todoId := vars["todoId"]
 	ID, err := strconv.ParseInt(todoId, 0, 0)
@@ -73,14 +73,14 @@ func UpdateTodo(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("error while parsing")
 	}
 	todoDetails, db := models.GetTodoById(ID)
-	if updateTodo.Title != "" {
-		todoDetails.Title = updateTodo.Title
+	if parsedRequest.Title != "" {
+		todoDetails.Title = parsedRequest.Title
 	}
-	if updateTodo.Description != "" {
-		todoDetails.Description = updateTodo.Description
+	if parsedRequest.Description != "" {
+		todoDetails.Description = parsedRequest.Description
 	}
-	if updateTodo.Condition != bool(false) || bool(true) {
-		todoDetails.Condition = updateTodo.Condition
+	if parsedRequest.Condition != bool(false) || bool(true) {
+		todoDetails.Condition = parsedRequest.Condition
 	}
 	db.Save(&todoDetails)
 	res, _ := json.Marshal(todoDetails)
@@ -89,17 +89,17 @@ func UpdateTodo(w http.ResponseWriter, r *http.Request) {
 }
 
 func CompleteTodo(w http.ResponseWriter, r *http.Request) {
-	var updateTodo = &models.Todo{}
-	utils.ParseBody(r, updateTodo)
+	var parsedRequest = &models.Todo{}
+	utils.ParseBody(r, parsedRequest)
 	vars := mux.Vars(r)
 	todoId := vars["todoId"]
 	ID, err := strconv.ParseInt(todoId, 0, 0)
 	if err != nil {
 		fmt.Println("error while parsing")
 	}
-	updateTodo.Condition = true
+	parsedRequest.Condition = true
 	todoDetails, db := models.GetTodoById(ID)
-	todoDetails.Condition = updateTodo.Condition
+	todoDetails.Condition = parsedRequest.Condition
 
 	db.Save(&todoDetails)
 	res, _ := json.Marshal(todoDetails)
@@ -108,17 +108,17 @@ func CompleteTodo(w http.ResponseWriter, r *http.Request) {
 }
 
 func InCompleteTodo(w http.ResponseWriter, r *http.Request) {
-	var updateTodo = &models.Todo{}
-	utils.ParseBody(r, updateTodo)
+	var parsedRequest = &models.Todo{}
+	utils.ParseBody(r, parsedRequest)
 	vars := mux.Vars(r)
 	todoId := vars["todoId"]
 	ID, err := strconv.ParseInt(todoId, 0, 0)
 	if err != nil {
 		fmt.Println("error while parsing")
 	}
-	updateTodo.Condition = false
+	parsedRequest.Condition = false
 	todoDetails, db := models.GetTodoById(ID)
-	todoDetails.Condition = updateTodo.Condition
+	todoDetails.Condition = parsedRequest.Condition
 
 	db.Save(&todoDetails)
 	res, _ := json.Marshal(todoDetails)
