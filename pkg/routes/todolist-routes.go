@@ -13,4 +13,4 @@ var RegisterTodoListRoutes = func (router *mux.Router){
 	router.HandleFunc("/todo/{todoId}", controllers.DeleteTodo).Methods("DELETE")
 	router.HandleFunc("/complete/{todoId}", controllers.CompleteTodo).Methods("PUT")
 	router.HandleFunc("/incomplete/{todoId}", controllers.InCompleteTodo).Methods("PUT")
-}
+} 
