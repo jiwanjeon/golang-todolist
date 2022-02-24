@@ -34,6 +34,7 @@ func Connet() {
 	} else {
 		fmt.Println("Successfully connected to database!")
 	}
+	
 }
 
 func GetDB() *gorm.DB {

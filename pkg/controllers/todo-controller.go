@@ -26,8 +26,6 @@ func GetTodo(w http.ResponseWriter, r *http.Request) {
 func GetTodoById(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	todoId := vars["todoId"]
-	// TODO 
-	fmt.Println("string일까 int일까?: ", todoId)
 	ID, err := strconv.ParseInt(todoId, 0, 0)
 	if err != nil {
 		fmt.Println("error while parsing")
@@ -62,6 +60,8 @@ func DeleteTodo(w http.ResponseWriter, r *http.Request) {
 	w.Write(res)
 }
 
+// Todo: Controller 와 db 역할 분리하기 (func)
+
 func UpdateTodo(w http.ResponseWriter, r *http.Request) {
 	var parsedRequest = &models.Todo{}
 	utils.ParseBody(r, parsedRequest)
@@ -87,6 +87,8 @@ func UpdateTodo(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 	w.Write(res)
 }
+
+
 
 func CompleteTodo(w http.ResponseWriter, r *http.Request) {
 	var parsedRequest = &models.Todo{}
