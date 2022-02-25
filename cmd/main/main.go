@@ -21,7 +21,7 @@ func main() {
 		fmt.Println("Migration Working...")
 		models.Migrate()
 		router := mux.NewRouter()
-		routes.RegisterTodoListRoutes(router)
+		routes.Routes(router)
 		http.Handle("/", router)
 		log.Fatal(http.ListenAndServe(":9010", router))
 	} else {
