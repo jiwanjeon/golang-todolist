@@ -84,7 +84,7 @@ func GetAllTodos() []Todo {
 
 func GetTodoById(Id int64) (*Todo, *gorm.DB) {
 	var getTodo Todo
-	// TODO
+	// TODO : https://gorm.io/docs/query.html, https://gorm.io/docs/advanced_query.html
 	db := db.Where("ID = ?", Id).Find(&getTodo)
 	return &getTodo, db
 }

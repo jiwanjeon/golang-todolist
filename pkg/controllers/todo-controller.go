@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"net/http"
 	"strconv"
-
+	"github.com/jiwanjeon/go-todolist/pkg/config"
 	"github.com/gorilla/mux"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"github.com/jiwanjeon/go-todolist/pkg/models"
@@ -14,6 +14,7 @@ import (
 )
 
 var NewTodo models.Todo
+// var db *gorm.DB
 
 func GetTodo(w http.ResponseWriter, r *http.Request) {
 	newTodos := models.GetAllTodos()
@@ -66,13 +67,15 @@ func UpdateTodo(w http.ResponseWriter, r *http.Request) {
 	var parsedRequest = &models.Todo{}
 	utils.ParseBody(r, parsedRequest)
 	vars := mux.Vars(r)
-	todoId := vars["todoId"]
-	ID, err := strconv.ParseInt(todoId, 0, 0)
-	// TODO: == 아닌가?? 
+	todoId, err := strconv.Atoi(vars["todoId"])
 	if err != nil {
-		fmt.Println("error while parsing")
+		fmt.Println("error while doing something")
 	}
-	todoDetails, db := models.GetTodoById(ID)
+
+	convertIntTodoId := int64(todoId)
+	todoDetails, _ := models.GetTodoById(convertIntTodoId)
+
+	fmt.Println("(before)todoDetails: ", todoDetails)
 	if parsedRequest.Title != "" {
 		todoDetails.Title = parsedRequest.Title
 	}
@@ -82,13 +85,23 @@ func UpdateTodo(w http.ResponseWriter, r *http.Request) {
 	if parsedRequest.Condition != bool(false) || bool(true) {
 		todoDetails.Condition = parsedRequest.Condition
 	}
-	db.Save(&todoDetails)
-	res, _ := json.Marshal(todoDetails)
-	w.WriteHeader(http.StatusOK)
-	w.Write(res)
+	fmt.Println("(after)todoDetails: ", todoDetails)
+
+	// db.Save(&todoDetails)
+	// res, _ := json.Marshal(todoDetails)
+	// w.WriteHeader(http.StatusOK)
+	// w.Write(res)
+	
+	DatabaseUpdate(&todoDetails, w)
 }
 
-
+func DatabaseUpdate(todoDetails interface{}, w http.ResponseWriter) {
+	db := config.GetDB()
+	db.Save(todoDetails)
+	res, _ := json.Marshal(todoDetails)
+	fmt.Println("res: ", res)
+	w.Write(res)
+}
 
 func CompleteTodo(w http.ResponseWriter, r *http.Request) {
 	var parsedRequest = &models.Todo{}
