@@ -1,7 +1,6 @@
 package routes
 
 import (
-	// "fmt"
 	"net/http/httptest"
 	"testing"
 	"net/http"
@@ -49,8 +48,8 @@ func TestGetTodoById(t *testing.T) {
 }
 
 expected := `{"ID":46,"CreatedAt":"2022-02-25T11:17:56.93215+09:00","UpdatedAt":"2022-02-25T11:17:56.93215+09:00","DeletedAt":null,"title":"test-title-console-check","description":"test-description-console-check","conditions":true}`
-if ResponseRecorder.Body.String() != expected {
-	t.Errorf("handler returned unexpected body: got %v want %v",
-	ResponseRecorder.Body.String(), expected)
-}
+	if ResponseRecorder.Body.String() != expected {
+		t.Errorf("handler returned unexpected body: got %v want %v",
+		ResponseRecorder.Body.String(), expected)
+	}
 }

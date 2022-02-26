@@ -7,13 +7,6 @@ import (
 
 var db *gorm.DB
 
-//TODO: Interface 화
-// type Manager interface {
-// 	GetAll()
-// 	Get()
-// 	Create()
-// }
-
 type Person struct {
 	gorm.Model
 
@@ -24,18 +17,11 @@ type Person struct {
 
 type Todo struct {
 	gorm.Model
-	
-	// todo
-	// Id int `json:"id"`
+
 	Title string `json:"title"`
 	Description string `json:"description"`
 	Condition bool `json:"conditions"`
 }
-
-//TODO: Interface 화
-// type TodoManger struct {
-// 	Manager
-// }
 
 var (
 	person = &Person{Name: "Jiwan", Email: "jeonjiwan94@gmail.com"}
@@ -68,13 +54,6 @@ func (b *Todo) CreateTodo() *Todo{
 	db.Create(&b)
 	return b
 }
-
-//TODO: Interface 화
-// func (m *TodoManger) GetAll() []Todo {
-// 	var x []Todo
-// 	db.Find(&x)
-// 	return x
-// }
 
 func GetAllTodos() []Todo {
 	var Todos []Todo

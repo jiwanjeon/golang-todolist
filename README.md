@@ -1,13 +1,13 @@
 # ToDo list with Golang
 
-# Tools
+## Tools
 
 - Gorm
 - Json marshall, unmarshall
 - Gorilla Mux
 - postgreSQL
 
-# Routes
+## Routes
 
 - Get Todos <-- /todo/ <-- GET
 - Create Todo <-- /todo/ <-- POST
@@ -17,7 +17,7 @@
 - Complete Todo <-- /todo/{todoid} <-- PUT
 - Incomplete Todo <-- /todo/{todoid} <-- PUT
 
-# Project Struct
+## Project Struct
 
 cmd --> main --> main.go <br>
 pkg <br>

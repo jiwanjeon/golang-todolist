@@ -14,8 +14,8 @@ import (
 )
 
 var NewTodo models.Todo
-// var db *gorm.DB
 
+// Receiving All Todo-list Data
 func GetTodo(w http.ResponseWriter, r *http.Request) {
 	newTodos := models.GetAllTodos()
 	res, _ := json.Marshal(newTodos)
@@ -24,6 +24,7 @@ func GetTodo(w http.ResponseWriter, r *http.Request) {
 	w.Write(res)
 }
 
+// Receiving Todo-list specific ID Data 
 func GetTodoById(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	todoId := vars["todoId"]
@@ -38,6 +39,7 @@ func GetTodoById(w http.ResponseWriter, r *http.Request) {
 	w.Write(res)
 }
 
+// Creating Todo-list
 func CreateTodo(w http.ResponseWriter, r *http.Request) {
 	CreateTodo := &models.Todo{}
 	utils.ParseBody(r, CreateTodo)
@@ -47,6 +49,7 @@ func CreateTodo(w http.ResponseWriter, r *http.Request) {
 	w.Write(res)
 }
 
+// Delete Todo-list
 func DeleteTodo(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	todoId := vars["todoId"]
@@ -61,8 +64,7 @@ func DeleteTodo(w http.ResponseWriter, r *http.Request) {
 	w.Write(res)
 }
 
-// Todo: Controller 와 db 역할 분리하기 (func)
-
+// Update Todo-list information
 func UpdateTodo(w http.ResponseWriter, r *http.Request) {
 	var parsedRequest = &models.Todo{}
 	utils.ParseBody(r, parsedRequest)
@@ -85,13 +87,6 @@ func UpdateTodo(w http.ResponseWriter, r *http.Request) {
 	if parsedRequest.Condition != bool(false) || bool(true) {
 		todoDetails.Condition = parsedRequest.Condition
 	}
-	fmt.Println("(after)todoDetails: ", todoDetails)
-
-	// db.Save(&todoDetails)
-	// res, _ := json.Marshal(todoDetails)
-	// w.WriteHeader(http.StatusOK)
-	// w.Write(res)
-	
 	DatabaseUpdate(&todoDetails, w)
 }
 
@@ -99,10 +94,10 @@ func DatabaseUpdate(todoDetails interface{}, w http.ResponseWriter) {
 	db := config.GetDB()
 	db.Save(todoDetails)
 	res, _ := json.Marshal(todoDetails)
-	fmt.Println("res: ", res)
 	w.Write(res)
 }
 
+// Change Todo-list Condition change into true
 func CompleteTodo(w http.ResponseWriter, r *http.Request) {
 	var parsedRequest = &models.Todo{}
 	utils.ParseBody(r, parsedRequest)
@@ -122,6 +117,7 @@ func CompleteTodo(w http.ResponseWriter, r *http.Request) {
 	w.Write(res)
 }
 
+// Change Todo-list Condition change into false
 func InCompleteTodo(w http.ResponseWriter, r *http.Request) {
 	var parsedRequest = &models.Todo{}
 	utils.ParseBody(r, parsedRequest)
