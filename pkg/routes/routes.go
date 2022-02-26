@@ -5,7 +5,7 @@ import (
 	"github.com/jiwanjeon/go-todolist/pkg/controllers"
 )
 
-var RegisterTodoListRoutes = func (router *mux.Router){
+var Routes = func (router *mux.Router){
 	router.HandleFunc("/todo/", controllers.CreateTodo).Methods("POST")
 	router.HandleFunc("/todo/", controllers.GetTodo).Methods("GET")
 	router.HandleFunc("/todo/{todoId}", controllers.GetTodoById).Methods("GET")
