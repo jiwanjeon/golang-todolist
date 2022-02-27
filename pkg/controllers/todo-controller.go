@@ -5,9 +5,10 @@ import (
 	"fmt"
 	"net/http"
 	"strconv"
-	"github.com/jiwanjeon/go-todolist/pkg/config"
+
 	"github.com/gorilla/mux"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
+	"github.com/jiwanjeon/go-todolist/pkg/config"
 	"github.com/jiwanjeon/go-todolist/pkg/models"
 	"github.com/jiwanjeon/go-todolist/pkg/utils"
 	_ "github.com/lib/pq"
@@ -15,7 +16,7 @@ import (
 
 var NewTodo models.Todo
 
-// Receiving All Todo-list Data
+// Returning All Todo-list Data
 func GetTodo(w http.ResponseWriter, r *http.Request) {
 	newTodos := models.GetAllTodos()
 	res, _ := json.Marshal(newTodos)
@@ -24,7 +25,7 @@ func GetTodo(w http.ResponseWriter, r *http.Request) {
 	w.Write(res)
 }
 
-// Receiving Todo-list specific ID Data 
+// Returning Todo-list specific ID Data 
 func GetTodoById(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	todoId := vars["todoId"]
