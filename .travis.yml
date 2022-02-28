@@ -1,7 +1,0 @@
-sudo: required
-services:
-  - docker
-
-script:
-  - docker build -t todo_list/backend .
-  - docker images todo_list/backend
