@@ -8,30 +8,42 @@ import (
 
 	"github.com/jiwanjeon/go-todolist/graph/generated"
 	"github.com/jiwanjeon/go-todolist/graph/model"
+	"github.com/jiwanjeon/go-todolist/pkg/models"
 )
 
 func (r *mutationResolver) CreateTodo(ctx context.Context, input model.NewTodo) (*model.Todo, error) {
 	todo := &model.Todo{
+		ID:          input.ID,
 		Title:       input.Title,
 		Description: input.Description,
 		Condition:   input.Condition,
 	}
 
-	r.TodosList = append(r.TodosList, todo)
+	err := r.DB.Create(&todo).Error
+	if err != nil {
+		return nil, err
+	}
+	// r.TodosList = append(r.TodosList, todo)
 	return todo, nil
 }
 
+func (r *mutationResolver) DeleteTodo(ctx context.Context, todoID int) (bool, error) {
+	r.DB.Where("ID = ?", todoID).Delete(&models.Todo{})
+	return true, nil
+}
+
 func (r *queryResolver) Todos(ctx context.Context) ([]*model.Todo, error) {
-	return r.TodosList, nil
+	// return r.TodosList, nil
 
 	// Adding a todo-list
-	// return []*model.Todo{
-	// 	{
-	// 		Title:       "Jiwan",
-	// 		Description: "desc1",
-	// 		Condition:   true,
-	// 	},
-	// }, nil
+	return []*model.Todo{
+		{
+			ID:          "123",
+			Title:       "Jiwan",
+			Description: "desc1",
+			Condition:   true,
+		},
+	}, nil
 }
 
 // Mutation returns generated.MutationResolver implementation.
