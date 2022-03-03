@@ -2,14 +2,14 @@
 
 package model
 
-type NewTodo struct {
+type Todo struct {
 	ID          string `json:"ID"`
 	Title       string `json:"Title"`
 	Description string `json:"Description"`
 	Condition   bool   `json:"Condition"`
 }
 
-type Todo struct {
+type TodoInput struct {
 	ID          string `json:"ID"`
 	Title       string `json:"Title"`
 	Description string `json:"Description"`

@@ -2,8 +2,9 @@ package models_test
 
 import (
 	"testing"
+
+	"github.com/jiwanjeon/go_todolist/pkg/models"
 	"github.com/stretchr/testify/require"
-	"github.com/jiwanjeon/go-todolist/pkg/models"
 )
 
 

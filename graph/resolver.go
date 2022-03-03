@@ -2,11 +2,10 @@ package graph
 
 import (
 	"github.com/jinzhu/gorm"
-	"github.com/jiwanjeon/go-todolist/graph/model"
+	"github.com/jiwanjeon/go_todolist/graph/model"
 )
 
 // This file will not be regenerated automatically.
-//
 // It serves as dependency injection for your app, add any dependencies you require here.
 
 type Resolver struct{

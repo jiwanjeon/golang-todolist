@@ -16,6 +16,8 @@ exec:
 model:
   filename: graph/model/models_gen.go
   package: model
+  # Todo:
+  #   model: github.com/jiwanjeon/go-todolist/models.Todo
 
 # Where should the resolver implementations go?
 resolver:

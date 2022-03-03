@@ -8,9 +8,9 @@ import (
 
 	"github.com/gorilla/mux"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
-	"github.com/jiwanjeon/go-todolist/pkg/config"
-	"github.com/jiwanjeon/go-todolist/pkg/models"
-	"github.com/jiwanjeon/go-todolist/pkg/utils"
+	"github.com/jiwanjeon/go_todolist/pkg/config"
+	"github.com/jiwanjeon/go_todolist/pkg/models"
+	"github.com/jiwanjeon/go_todolist/pkg/utils"
 	_ "github.com/lib/pq"
 )
 

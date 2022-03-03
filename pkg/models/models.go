@@ -2,7 +2,7 @@ package models
 
 import (
 	"github.com/jinzhu/gorm"
-	"github.com/jiwanjeon/go-todolist/pkg/config"
+	"github.com/jiwanjeon/go_todolist/pkg/config"
 )
 
 var db *gorm.DB
@@ -17,11 +17,13 @@ type Person struct {
 
 type Todo struct {
 	gorm.Model
-
+	// ID int64
 	Title string `json:"title"`
 	Description string `json:"description"`
 	Condition bool `json:"conditions"`
 }
+
+
 
 var (
 	person = &Person{Name: "Jiwan", Email: "jeonjiwan94@gmail.com"}
