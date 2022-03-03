@@ -1,13 +1,20 @@
 # ToDo list with Golang
 
-## Tools
+## ✅ Tools
 
-- Gorm
-- Json marshall, unmarshall
+- GORM
 - Gorilla Mux
-- postgreSQL
+- PostgreSQL
+- Unit Test (testify)
+- Docker
+- Github Action CI/CD
+- graphQL
 
-## Routes
+## ✅ What wii you get after this project?
+
+- By using the above tools, you will be able to get directions for how to use them.
+
+## ✅ Routes
 
 - Get Todos <-- /todo/ <-- GET
 - Create Todo <-- /todo/ <-- POST
@@ -17,7 +24,7 @@
 - Complete Todo <-- /todo/{todoid} <-- PUT
 - Incomplete Todo <-- /todo/{todoid} <-- PUT
 
-## Project Struct
+## ✅ Project Structure
 
 cmd --> main --> main.go <br>
 pkg <br>

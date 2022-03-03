@@ -28,6 +28,7 @@ func (r *mutationResolver) CreateTodo(ctx context.Context, input model.NewTodo) 
 }
 
 func (r *mutationResolver) DeleteTodo(ctx context.Context, todoID int) (bool, error) {
+
 	r.DB.Where("ID = ?", todoID).Delete(&models.Todo{})
 	return true, nil
 }

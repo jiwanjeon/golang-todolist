@@ -26,6 +26,7 @@ func Connet() {
 	// Database connection string
 	dbURI := fmt.Sprintf("host=%s user=%s dbname=%s sslmode=disable password=%s port=%s", host, user, dbName, password, dbPort)
 
+	fmt.Println("dbURI: ", dbURI)
 	// Opening connection to database
 	db, err = gorm.Open(dialect, dbURI)
 	if err != nil {

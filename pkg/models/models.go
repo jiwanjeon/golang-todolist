@@ -49,7 +49,6 @@ func init() {
 }
 
 func (b *Todo) CreateTodo() *Todo{
-	// TODO
 	db.NewRecord(b)
 	db.Create(&b)
 	return b
