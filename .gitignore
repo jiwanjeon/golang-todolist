@@ -121,3 +121,6 @@ zsdoc/data
 
 # Secrutiy Issue
 .env
+
+# PostgresQL
+postgres-data
