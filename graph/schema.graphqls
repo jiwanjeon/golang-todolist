@@ -1,5 +1,6 @@
 type Query {
   todos: [Todo!]!
+  todo(todoID: Int!): Todo!
 }
 
 type Todo {
@@ -26,6 +27,6 @@ input TodoInput {
 
 type Mutation {
   createTodo(input: TodoInput!): Todo!
-  deleteTodo(todoId: Int!): Boolean!
-  updateTodo(todoId: Int!, input: TodoInput!): Todo!
+  deleteTodo(todoID: Int!): Boolean!
+  updateTodo(todoID: Int!, input: TodoInput!): Todo!
 }

@@ -64,6 +64,12 @@ func (r *queryResolver) Todos(ctx context.Context) ([]*model.Todo, error) {
 	return todos, nil
 }
 
+func (r *queryResolver) Todo(ctx context.Context, todoID int) (*model.Todo, error) {
+	var todo model.Todo
+	r.DB.Where("ID = ?", todoID).Find(&todo)
+	return &todo, nil
+}
+
 // Mutation returns generated.MutationResolver implementation.
 func (r *Resolver) Mutation() generated.MutationResolver { return &mutationResolver{r} }
 
@@ -72,3 +78,4 @@ func (r *Resolver) Query() generated.QueryResolver { return &queryResolver{r} }
 
 type mutationResolver struct{ *Resolver }
 type queryResolver struct{ *Resolver }
+
