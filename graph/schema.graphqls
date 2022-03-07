@@ -26,6 +26,6 @@ input TodoInput {
 
 type Mutation {
   createTodo(input: TodoInput!): Todo!
-  # deleteTodo(todoId: Int!): Boolean!
+  deleteTodo(todoId: Int!): Boolean!
   updateTodo(todoId: Int!, input: TodoInput!): Todo!
 }

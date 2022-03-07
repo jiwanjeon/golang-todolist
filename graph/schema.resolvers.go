@@ -31,6 +31,11 @@ func (r *mutationResolver) CreateTodo(ctx context.Context, input model.TodoInput
 	return &todo, nil
 }
 
+func (r *mutationResolver) DeleteTodo(ctx context.Context, todoID int) (bool, error) {
+	r.DB.Where("ID = ?", todoID).Delete(&model.Todo{})
+	return true, nil
+}
+
 func (r *mutationResolver) UpdateTodo(ctx context.Context, todoID int, input model.TodoInput) (*model.Todo, error) {
 	// helper := int64(todoID)
 	// ID, _ := strconv.ParseInt(todoID, 0, 0)
