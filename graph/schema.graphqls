@@ -17,7 +17,7 @@ input TodoInput {
 }
 
 input TodoUpdateInput {
-  ID: ID!
+  # ID: ID!
   Title: String!
   Description: String!
   Condition: Boolean!
@@ -26,5 +26,5 @@ input TodoUpdateInput {
 type Mutation {
   createTodo(input: TodoInput!): Todo!
   # deleteTodo(todoId: Int!): Boolean!
-  updateTodo(todoId: Int!, input: TodoInput!): Boolean!
+  updateTodo(todoId: Int!, input: TodoInput!): Todo!
 }

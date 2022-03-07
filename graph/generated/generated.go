@@ -62,7 +62,7 @@ type ComplexityRoot struct {
 
 type MutationResolver interface {
 	CreateTodo(ctx context.Context, input model.TodoInput) (*model.Todo, error)
-	UpdateTodo(ctx context.Context, todoID int, input model.TodoInput) (bool, error)
+	UpdateTodo(ctx context.Context, todoID int, input model.TodoInput) (*model.Todo, error)
 }
 type QueryResolver interface {
 	Todos(ctx context.Context) ([]*model.Todo, error)
@@ -225,7 +225,7 @@ input TodoInput {
 }
 
 input TodoUpdateInput {
-  ID: ID!
+  # ID: ID!
   Title: String!
   Description: String!
   Condition: Boolean!
@@ -234,7 +234,7 @@ input TodoUpdateInput {
 type Mutation {
   createTodo(input: TodoInput!): Todo!
   # deleteTodo(todoId: Int!): Boolean!
-  updateTodo(todoId: Int!, input: TodoInput!): Boolean!
+  updateTodo(todoId: Int!, input: TodoInput!): Todo!
 }
 `, BuiltIn: false},
 }
@@ -415,9 +415,9 @@ func (ec *executionContext) _Mutation_updateTodo(ctx context.Context, field grap
 		}
 		return graphql.Null
 	}
-	res := resTmp.(bool)
+	res := resTmp.(*model.Todo)
 	fc.Result = res
-	return ec.marshalNBoolean2bool(ctx, field.Selections, res)
+	return ec.marshalNTodo2ᚖgithubᚗcomᚋjiwanjeonᚋgo_todolistᚋgraphᚋmodelᚐTodo(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Query_todos(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
@@ -1900,14 +1900,6 @@ func (ec *executionContext) unmarshalInputTodoUpdateInput(ctx context.Context, o
 
 	for k, v := range asMap {
 		switch k {
-		case "ID":
-			var err error
-
-			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("ID"))
-			it.ID, err = ec.unmarshalNID2string(ctx, v)
-			if err != nil {
-				return it, err
-			}
 		case "Title":
 			var err error
 
@@ -2554,21 +2546,6 @@ func (ec *executionContext) unmarshalNBoolean2bool(ctx context.Context, v interf
 
 func (ec *executionContext) marshalNBoolean2bool(ctx context.Context, sel ast.SelectionSet, v bool) graphql.Marshaler {
 	res := graphql.MarshalBoolean(v)
-	if res == graphql.Null {
-		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
-			ec.Errorf(ctx, "must not be null")
-		}
-	}
-	return res
-}
-
-func (ec *executionContext) unmarshalNID2string(ctx context.Context, v interface{}) (string, error) {
-	res, err := graphql.UnmarshalID(v)
-	return res, graphql.ErrorOnPath(ctx, err)
-}
-
-func (ec *executionContext) marshalNID2string(ctx context.Context, sel ast.SelectionSet, v string) graphql.Marshaler {
-	res := graphql.MarshalID(v)
 	if res == graphql.Null {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "must not be null")

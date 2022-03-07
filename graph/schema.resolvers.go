@@ -32,12 +32,12 @@ func (r *mutationResolver) CreateTodo(ctx context.Context, input model.TodoInput
 	return &todo, nil
 }
 
-func (r *mutationResolver) UpdateTodo(ctx context.Context, todoID int, input model.TodoInput) (bool, error) {
+func (r *mutationResolver) UpdateTodo(ctx context.Context, todoID int, input model.TodoInput) (*model.Todo, error) {
 	panic(fmt.Errorf("not implemented"))
 }
 
 func (r *queryResolver) Todos(ctx context.Context) ([]*model.Todo, error) {
-	return r.TodosList, nil
+	// return r.TodosList, nil
 	// return []*model.Todo{
 	// 	{
 	// 		ID:          "123",
@@ -46,6 +46,9 @@ func (r *queryResolver) Todos(ctx context.Context) ([]*model.Todo, error) {
 	// 		Condition:   true,
 	// 	},
 	// }, nil
+	var todos []*model.Todo
+	r.DB.Find(&todos)
+	return todos, nil
 }
 
 // Mutation returns generated.MutationResolver implementation.
@@ -65,7 +68,7 @@ type queryResolver struct{ *Resolver }
 //  - You have helper methods in this file. Move them out to keep these resolver files clean.
 func (r *mutationResolver) UpdateOrder(ctx context.Context, todoID int, input model.TodoUpdateInput) (*model.Todo, error) {
 	updatedTodo := model.Todo{
-		ID:          input.ID,
+		// ID:          input.ID,
 		Title:       input.Title,
 		Description: input.Description,
 		Condition:   input.Condition,
