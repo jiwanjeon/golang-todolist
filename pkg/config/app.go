@@ -38,3 +38,4 @@ func Connet() {
 func GetDB() *gorm.DB {
 	return db
 }
+

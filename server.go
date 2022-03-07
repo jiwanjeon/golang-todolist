@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -12,11 +13,14 @@ import (
 	"github.com/jinzhu/gorm"
 	"github.com/jiwanjeon/go_todolist/graph"
 	"github.com/jiwanjeon/go_todolist/graph/generated"
+	"github.com/jiwanjeon/go_todolist/graph/model"
+	_ "github.com/lib/pq"
 )
 
 const defaultPort = "8080"
 var db *gorm.DB;
 func main() {
+	initDB()
 	port := os.Getenv("PORT")
 	if port == "" {
 		port = defaultPort
@@ -33,28 +37,28 @@ func main() {
 	log.Fatal(http.ListenAndServe(":"+port, nil))
 }
 
-// func initDB() {
-// 	var err error
-// 	dialect := os.Getenv("DIALECT")
-// 	host := os.Getenv("HOST")
-// 	dbPort := os.Getenv("DBPORT")
-// 	user := os.Getenv("USER")
-// 	dbName := os.Getenv("NAME")
-// 	password := os.Getenv("PASSWORD")
-// 	// Database connection string
-// 	dbURI := fmt.Sprintf("host=%s user=%s dbname=%s sslmode=disable password=%s port=%s", host, user, dbName, password, dbPort)
+func initDB() {
+	var err error
+	dialect := os.Getenv("DIALECT")
+	host := os.Getenv("HOST")
+	dbPort := os.Getenv("DBPORT")
+	user := os.Getenv("USER")
+	dbName := os.Getenv("NAME")
+	password := os.Getenv("PASSWORD")
+	// Database connection string
+	dbURI := fmt.Sprintf("host=%s user=%s dbname=%s sslmode=disable password=%s port=%s", host, user, dbName, password, dbPort)
 
 	
-// 	// Opening connection to database
-// 	db, err = gorm.Open(dialect, dbURI)
-// 	if err != nil {
-// 		log.Fatal(err)
-// 	} else {
-// 		fmt.Println("Successfully connected to database!")
-// 	}
+	// Opening connection to database
+	db, err = gorm.Open(dialect, dbURI)
+	if err != nil {
+		log.Fatal(err)
+	} else {
+		fmt.Println("Successfully connected to database!")
+	}
 
-// 	db.AutoMigrate(&model.Todo{})
-// }
+	db.AutoMigrate(&model.Todo{})
+}
 
 // func main() {
 // 	port := os.Getenv("PORT")

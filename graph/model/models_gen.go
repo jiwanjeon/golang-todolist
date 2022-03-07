@@ -10,6 +10,12 @@ type Todo struct {
 }
 
 type TodoInput struct {
+	Title       string `json:"Title"`
+	Description string `json:"Description"`
+	Condition   bool   `json:"Condition"`
+}
+
+type TodoUpdateInput struct {
 	ID          string `json:"ID"`
 	Title       string `json:"Title"`
 	Description string `json:"Description"`
