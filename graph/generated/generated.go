@@ -211,7 +211,7 @@ var sources = []*ast.Source{
 }
 
 type Todo {
-  ID: String!
+  ID: Int!
   Title: String!
   Description: String!
   Condition: Boolean!
@@ -224,12 +224,13 @@ input TodoInput {
   Condition: Boolean!
 }
 
-input TodoUpdateInput {
-  # ID: ID!
-  Title: String!
-  Description: String!
-  Condition: Boolean!
-}
+# Input 하나밖에 못쓰나요?
+# input TodoUpdateInput {
+#   ID: Int!
+#   Title: String!
+#   Description: String!
+#   Condition: Boolean!
+# }
 
 type Mutation {
   createTodo(input: TodoInput!): Todo!
@@ -556,9 +557,9 @@ func (ec *executionContext) _Todo_ID(ctx context.Context, field graphql.Collecte
 		}
 		return graphql.Null
 	}
-	res := resTmp.(string)
+	res := resTmp.(int)
 	fc.Result = res
-	return ec.marshalNString2string(ctx, field.Selections, res)
+	return ec.marshalNInt2int(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Todo_Title(ctx context.Context, field graphql.CollectedField, obj *model.Todo) (ret graphql.Marshaler) {
@@ -1854,45 +1855,6 @@ func (ec *executionContext) ___Type_specifiedByURL(ctx context.Context, field gr
 
 func (ec *executionContext) unmarshalInputTodoInput(ctx context.Context, obj interface{}) (model.TodoInput, error) {
 	var it model.TodoInput
-	asMap := map[string]interface{}{}
-	for k, v := range obj.(map[string]interface{}) {
-		asMap[k] = v
-	}
-
-	for k, v := range asMap {
-		switch k {
-		case "Title":
-			var err error
-
-			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("Title"))
-			it.Title, err = ec.unmarshalNString2string(ctx, v)
-			if err != nil {
-				return it, err
-			}
-		case "Description":
-			var err error
-
-			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("Description"))
-			it.Description, err = ec.unmarshalNString2string(ctx, v)
-			if err != nil {
-				return it, err
-			}
-		case "Condition":
-			var err error
-
-			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("Condition"))
-			it.Condition, err = ec.unmarshalNBoolean2bool(ctx, v)
-			if err != nil {
-				return it, err
-			}
-		}
-	}
-
-	return it, nil
-}
-
-func (ec *executionContext) unmarshalInputTodoUpdateInput(ctx context.Context, obj interface{}) (model.TodoUpdateInput, error) {
-	var it model.TodoUpdateInput
 	asMap := map[string]interface{}{}
 	for k, v := range obj.(map[string]interface{}) {
 		asMap[k] = v

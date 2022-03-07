@@ -3,7 +3,7 @@ type Query {
 }
 
 type Todo {
-  ID: String!
+  ID: Int!
   Title: String!
   Description: String!
   Condition: Boolean!
@@ -16,12 +16,13 @@ input TodoInput {
   Condition: Boolean!
 }
 
-input TodoUpdateInput {
-  # ID: ID!
-  Title: String!
-  Description: String!
-  Condition: Boolean!
-}
+# Input 하나밖에 못쓰나요?
+# input TodoUpdateInput {
+#   ID: Int!
+#   Title: String!
+#   Description: String!
+#   Condition: Boolean!
+# }
 
 type Mutation {
   createTodo(input: TodoInput!): Todo!

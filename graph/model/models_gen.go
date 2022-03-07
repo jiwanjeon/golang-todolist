@@ -3,19 +3,13 @@
 package model
 
 type Todo struct {
-	ID          string `json:"ID"`
+	ID          int    `json:"ID"`
 	Title       string `json:"Title"`
 	Description string `json:"Description"`
 	Condition   bool   `json:"Condition"`
 }
 
 type TodoInput struct {
-	Title       string `json:"Title"`
-	Description string `json:"Description"`
-	Condition   bool   `json:"Condition"`
-}
-
-type TodoUpdateInput struct {
 	Title       string `json:"Title"`
 	Description string `json:"Description"`
 	Condition   bool   `json:"Condition"`
