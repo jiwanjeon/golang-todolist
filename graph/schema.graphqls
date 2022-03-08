@@ -17,14 +17,6 @@ input TodoInput {
   Condition: Boolean!
 }
 
-# Input 하나밖에 못쓰나요?
-# input TodoUpdateInput {
-#   ID: Int!
-#   Title: String!
-#   Description: String!
-#   Condition: Boolean!
-# }
-
 type Mutation {
   createTodo(input: TodoInput!): Todo!
   deleteTodo(todoID: Int!): Boolean!

@@ -15,18 +15,13 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=wjswldhks
-      # - POSTGRES_PORT=9010
-      # - PORT=9010
+
     ports:
       - "5432:5432"
     volumes:
       - ./postgres-data:/var/lib/postgresql/data
   todo-list:
     container_name: todo-list
-    # build:
-    #   # .
-    #   context: ./
-    #   dockerfile: ./Dockerfile
     image: todo-list
     depends_on:
       postgres:
@@ -34,7 +29,6 @@ services:
     ports:
       - 9010:9010
     environment:
-      # NODE_ENV: production
       - DIALECT=postgres
       - HOST=postgres-todo-list
       - DBPORT=5432
@@ -43,14 +37,5 @@ services:
       - NAME=postgres
       - PORT=9010
     build:
-      # .
       context: ./
       dockerfile: ./Dockerfile
-    # links:
-    #   - db
-    # volumes:
-    #   - "./:/src"
-# volumes:
-#   db:
-#     driver: local
-

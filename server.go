@@ -58,19 +58,3 @@ func initDB() {
 	}
 	db.AutoMigrate(&model.Todo{})
 }
-
-// func main() {
-// 	port := os.Getenv("PORT")
-// 	if port == "" {
-// 			port = defaultPort
-// 	}
-
-// 	initDB()
-// 	http.Handle("/", playground.Handler("GraphQL playground", "/query"))
-// 	http.Handle("/query", handler.GraphQL(go_todolist.NewExecutableSchema(go_todolist.Config{Resolvers: &go_todolist.Resolver{
-// 		DB: db,
-// }})))
-
-// 	log.Printf("connect to http://localhost:%s/ for GraphQL playground", port)
-// 	log.Fatal(http.ListenAndServe(":"+port, nil))
-// }

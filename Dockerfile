@@ -9,6 +9,5 @@ COPY . ./
 
 EXPOSE 9010
 RUN go mod verify
-# RUN echo 'Now Running server.go'
 CMD ["go", "run", "server.go"]
 
