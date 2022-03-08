@@ -1,16 +1,14 @@
 FROM golang:latest
 
-# WORKDIR /go/src/todo_list
+WORKDIR /go/src/todo_list
 
 COPY go.mod ./
 COPY go.sum ./
 RUN go mod download
 COPY . ./
 
-WORKDIR /go/src/todo_list/cmd/main
 EXPOSE 9010
 RUN go mod verify
-RUN go build main.go
-CMD ["./main", "-migrate"]
+# RUN echo 'Now Running server.go'
+CMD ["go", "run", "server.go"]
 
-# CMD ["go", "run", "main.go", "-migrate"]

@@ -30,8 +30,8 @@ func main() {
 		DB: db,
 	}}))
 
-	http.Handle("/", playground.Handler("GraphQL playground", "/query"))
-	http.Handle("/query", srv)
+	http.Handle("/", playground.Handler("GraphQL playground", "/todo"))
+	http.Handle("/todo", srv)
 
 	log.Printf("connect to http://localhost:%s/ for GraphQL playground", port)
 	log.Fatal(http.ListenAndServe(":"+port, nil))
@@ -48,15 +48,14 @@ func initDB() {
 	// Database connection string
 	dbURI := fmt.Sprintf("host=%s user=%s dbname=%s sslmode=disable password=%s port=%s", host, user, dbName, password, dbPort)
 
-	
 	// Opening connection to database
 	db, err = gorm.Open(dialect, dbURI)
 	if err != nil {
 		log.Fatal(err)
 	} else {
 		fmt.Println("Successfully connected to database!")
+		fmt.Println("This is server.go file")
 	}
-
 	db.AutoMigrate(&model.Todo{})
 }
 
