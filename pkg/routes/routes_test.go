@@ -17,7 +17,7 @@ func TestGetTodo(t *testing.T) {
 	router := mux.NewRouter()
 	Routes(router)
 	router.ServeHTTP(ResponseRecorder, req)
-
+	
   // Check the status code is what we expect.
   if status := ResponseRecorder.Code; status != http.StatusOK {
       t.Errorf("handler returned wrong status code: got %v want %v",
