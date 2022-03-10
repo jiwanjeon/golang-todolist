@@ -9,6 +9,7 @@
 - Docker
 - Github Action CI/CD
 - graphQL
+- spectaql: This library that generates static documentation for a GraphQL.
 
 ## ✅ What wii you get after this project?
 
