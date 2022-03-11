@@ -1,6 +1,6 @@
 introspection:
   removeTrailingPeriodFromDescriptions: false
-  schemaFile: ./schema.graphql
+  schemaFile: ./graph/schema.graphqls
 
 info:
   title: GraphQL API Reference

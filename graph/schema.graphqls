@@ -1,24 +1,39 @@
+"This is Query"
 type Query {
+  "This will return all todo-list data"
   todos: [Todo!]!
+  "This will return specific todo-list with inputted todoID"
   todo(todoID: Int!): Todo!
 }
 
+"This is Todo type"
 type Todo {
+  "ID should be integer"
   ID: Int!
+  "Todo Title and should be string"
   Title: String!
+  "Description explain about todo-list Title and should be string"
   Description: String!
+  "Condition check the todo-list done or undone"
   Condition: Boolean!
 }
 
+"This is Todo Input"
 input TodoInput {
-  # ID: Int!
+  "Todo-list Title"
   Title: String!
+  "Todo-list Description"
   Description: String!
+  "Todo-list condition which is done or undone"
   Condition: Boolean!
 }
 
+"This is todo-list Mutation"
 type Mutation {
+  "Create todo-list"
   createTodo(input: TodoInput!): Todo!
+  "Delete todo-list"
   deleteTodo(todoID: Int!): Boolean!
+  "Update todo-list"
   updateTodo(todoID: Int!, input: TodoInput!): Todo!
 }

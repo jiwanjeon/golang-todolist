@@ -25,6 +25,10 @@
 - Complete Todo <-- /todo/{todoid} <-- PUT
 - Incomplete Todo <-- /todo/{todoid} <-- PUT
 
+## ✅ API Documentation Website
+
+: $ open config.yml .
+
 ## ✅ Project Structure
 
 cmd --> main --> main.go <br>
