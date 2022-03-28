@@ -25,7 +25,7 @@ type Person struct {
 
 type Todo struct {
 	gorm.Model
-	// ID int64
+
 	Title string `json:"title"`
 	Description string `json:"description"`
 	Condition bool `json:"conditions"`
